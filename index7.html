@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <title>Hello, world!</title>
+
+</head>
+
+<body>
+  
+  <div class="container">
+    <h1>Registro Persona</h1>
+    <form>
+      Nombre: <br>
+      <input type="text" name="nombre" id="txtNombre"><br>
+      Apellido: <br>
+      <input type="text" name="apellid" id="txtApellido"><br>
+      Edad: <br>
+      <input type="text" name="edad" id="txtEdad"><br>
+      <br>
+      <input type="radio" name="sexo" value="Masculino">masculino <br>
+      <input type="radio" name="sexo" value="Femenino">femenino <br>
+      <input type="radio" name="sexo" value="otro">otro <br>
+      <br>
+      deporte: <br>
+      <select name="deporte" id="selectDeporte">
+        <option value="">Seleccione...</option>
+        <option value="tenis">Tenis</option>
+        <option value="futbol">Futbol</option>
+        <option value="natacion">natacion</option>
+        <option value="paddle">paddle</option>
+      </select>
+
+      <textarea name="descripcion" id="txtDescripcion" cols="60" rows="10" onkeyup="contador();"></textarea>
+      <button type="button" onclick="validarForm();">validar</button>
+      <br>
+      <p id="contador"></p>
+      <input type="submit" value="Grabar" onclick="grabar()">
+      
+      
+
+      <script>
+
+        function contador(){
+
+          let txtDescripcion = document.getElementById("txtDescripcion")
+          document.getElementById("contador").innerHTML = txtDescripcion.value.length
+        }
+
+        function grabar(){
+
+          if(validarForm()){
+            alert("realizar alguna accion...")
+
+          }else{
+
+            alert("error en la validacion")
+          }
+
+
+        }
+
+        function validarForm(){
+
+          var txtNombre = document.getElementById("txtNombre");          
+          var txtApellido = document.getElementById("txtApellido");
+          var txtEdad = document.getElementById("txtEdad");
+          var radiosBut = document.getElementsByName("sexo");
+          var deporte = document.getElementById("selectDeporte");
+
+          if(txtNombre.value === ""){
+            swal("ingrese Nombre");
+            return false;
+          }
+
+          if(txtApellido.value === ""){
+            swal("ingrese Apellido");
+            return false;
+          }
+          if(txtEdad.value === ""){
+            swal("ingrese Edad");
+            return false;
+          }
+          if(isNaN(txtEdad.value)){
+            swal("ingrese correctamente la edad");
+            return false;
+          }
+
+          let algunoChekeado = false;
+          for (let i = 0; i < radiosBut.length; i++) {
+            if(radiosBut[i].checked){
+              algunoChekeado = true;
+              break;
+            }
+            
+          }
+          if(algunoChekeado == false){
+            swal("seleccione sexo")
+              return false;
+            }
+
+            if(deporte[deporte.selectedIndex].value ===""){
+              swal("Seleccione deporte")
+              return false;
+
+            }
+
+            swal("validacion Correcta")
+            return true;
+
+        }
+      </script>
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </form>
+  </div>
+  <script>
+    
+  </script>
+  <!--<script src="/js/js-externo.js"></script>-->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+</body>
+
+</html>
